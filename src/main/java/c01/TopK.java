@@ -7,6 +7,5 @@ package c01;
 public class TopK {
 
     public static void main(String[] args) throws Exception {
-
     }
 }
