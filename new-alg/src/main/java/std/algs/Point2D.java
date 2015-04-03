@@ -339,4 +339,9 @@ public class Point2D implements Comparable<Point2D> {
             StdDraw.show(100);
         }
     }
+
+    public static double distance(double x1, double y1,
+                           double x2, double y2) {
+        return java.awt.geom.Point2D.distance(x1,y2,x2,y2);
+    }
 }
