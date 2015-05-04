@@ -18,11 +18,11 @@ public class AnsTest {
     @Test
     public void test121() throws Exception {
         int N = 10;
-        double[] x= new double[N];
+        double[] x = new double[N];
         double[] y = new double[N];
         for (int i = 0; i < N; i++) {
-                x[i] = StdRandom.uniform();
-                y[i] = StdRandom.uniform();
+            x[i] = StdRandom.uniform();
+            y[i] = StdRandom.uniform();
         }
         double min = 1;
         int a1 = 0;
@@ -40,7 +40,7 @@ public class AnsTest {
                 }
             }
         }
-        System.out.println("("+x[a1] + "," + y[a1] + "),(" + x[b1] + ","+y[b1]+")");
+        System.out.println("(" + x[a1] + "," + y[a1] + "),(" + x[b1] + "," + y[b1] + ")");
 
     }
 
@@ -113,6 +113,62 @@ public class AnsTest {
         StdOut.println(c);
         StdOut.println(box.area());
         System.in.read();
+    }
+
+    class MyInterval1D {
+        private double left;
+        private double right;
+
+        MyInterval1D(double left, double right) {
+            if (left <= right) {
+                this.left = left;
+                this.right = right;
+            } else {
+                throw new IllegalArgumentException("left is larger than right");
+            }
+        }
+
+        public boolean inter(MyInterval1D that) {
+            if (this.right < that.left) {
+                return false;
+            }
+            if (that.right < this.left) {
+                return false;
+            }
+            return true;
+        }
+
+        public boolean contain(double x) {
+            return x <= this.right && x >= this.left;
+        }
+
+        @Override
+        public String toString() {
+            return "MyInterval1D{" +
+                    "left=" + left +
+                    ", right=" + right +
+                    '}';
+        }
+    }
+
+    @Test
+    public void test122() throws Exception {
+        int N = 100;
+        MyInterval1D[] myInterval1Ds = new MyInterval1D[N];
+        for (int i = 0; i < N; i++) {
+            double left = StdRandom.uniform(1.0, 100.0);
+            double right = left + StdRandom.uniform(1.0, 100.0);
+            myInterval1Ds[i] = new MyInterval1D(left, right);
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (myInterval1Ds[i].inter(myInterval1Ds[j])) {
+                    System.out.println("inter " + myInterval1Ds[i] + " with " + myInterval1Ds[j]);
+
+                }
+            }
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package com.jt.test.chp01;
 
+import org.junit.Assert;
 import org.junit.Test;
 import std.libs.In;
 import std.libs.StdOut;
@@ -127,7 +128,7 @@ public class ExeTest {
         int hi = a.length - 1;
         int count = 1;
         while (lo <= hi) {
-            count ++;
+            count++;
             int mid = lo + (hi - lo) / 2;
             if (key < a[mid])
                 hi = mid - 1;
@@ -232,6 +233,13 @@ public class ExeTest {
 
         int rank = rank1(23, ints);
         System.out.println(rank);
+    }
+
+    public static int[] readFromFile(String fileName) {
+        File file = new File(fileName);
+        In in = new In(file);
+        int[] ints = in.readAllInts();
+        return ints;
     }
 
     public static int rank1(int key, int[] a) {
@@ -365,5 +373,40 @@ public class ExeTest {
         if (n <= 0)
             return "";
         return exR1(n - 3) + n + exR1(n - 2) + n;
+    }
+
+
+    @Test
+    public void test1138() throws Exception {
+        int[] wl = readFromFile("D:\\books\\algorithm\\algs4-data\\largeW.txt");
+        int[] tran = readFromFile("D:\\books\\algorithm\\algs4-data\\largeT.txt");
+        Stopwatch stopwatch = new Stopwatch();
+        Arrays.sort(wl);
+        int length = tran.length;
+        for (int i = 0; i < length; i++) {
+            int search = BinarySearch.search(tran[i], wl);
+            if (search > 0) {
+                System.out.println(wl[search]);
+            }
+        }
+        System.out.println("used " + stopwatch.elapsedTime());
+
+    }
+
+    @Test
+    public void test11382() throws Exception {
+        int[] wl = readFromFile("D:\\books\\algorithm\\algs4-data\\largeW.txt");
+        int[] tran = readFromFile("D:\\books\\algorithm\\algs4-data\\largeT.txt");
+        Stopwatch stopwatch = new Stopwatch();
+//        Arrays.sort(wl);
+        int length = tran.length;
+        for (int i = 0; i < length; i++) {
+            int search = BruteSearch.search(tran[i], wl);
+            if (search > 0) {
+                System.out.println(wl[search]);
+            }
+        }
+        System.out.println("used " + stopwatch.elapsedTime());
+
     }
 }
