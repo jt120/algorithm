@@ -219,6 +219,7 @@ public final class StdOut {
         out.flush();
     }
 
+
     // This method is just here to test the class
     public static void main(String[] args) {
 
