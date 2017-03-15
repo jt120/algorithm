@@ -20,7 +20,7 @@ public class CollisionSystem {
 
     // create a new collision system with the given set of particles
     public CollisionSystem(Particle[] particles) {
-        this.particles = particles.clone();   // defensive copy
+        this.particles = particles.clone(); // defensive copy
     }
 
     // updates priority queue with all new events for particle a

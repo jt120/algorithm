@@ -172,7 +172,7 @@ public class KosarajuSharirSCC {
      * Unit tests the <tt>KosarajuSharirSCC</tt> data type.
      */
     public static void main(String[] args) {
-        In in = new In(args[0]);
+        In in = new In("D:\\project\\a\\algs-student\\algs4-data\\tinyDG.txt");
         Digraph G = new Digraph(in);
         KosarajuSharirSCC scc = new KosarajuSharirSCC(G);
 
